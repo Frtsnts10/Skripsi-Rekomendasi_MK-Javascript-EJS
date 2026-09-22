@@ -4,6 +4,7 @@ var passport = require("passport");
 var schemaDataLogin = require("../models/ModelLogin");
 var schemaHistori = require("../models/DataHistori");
 var schemaTest = require("../models/DataTest");
+var middleware = require("../middleware");
 
 router.get("/", function(req, res) {
   res.render("Home");
@@ -46,11 +47,11 @@ router.post("/Login", passport.authenticate("local",
       }
 });
 
-router.get("/IndexAdmin", function(req, res) {
+router.get("/IndexAdmin", middleware.isAdmin, function(req, res) {
   res.render("IndexAdmin");
 });
 
-router.get("/DRek", function(req, res) {
+router.get("/DRek", middleware.isLoggedIn, function(req, res) {
   res.render("DRek");
 });
 
@@ -59,11 +60,11 @@ router.get("/Login", function(req, res) {
   res.render("Login");
 });
 
-router.get("/inputNilai", function(req, res) {
+router.get("/inputNilai", middleware.isLoggedIn, function(req, res) {
   res.render("inputNilai");
 });
 
-router.get("/IndexMhs", (req, res)=>{
+router.get("/IndexMhs", middleware.isLoggedIn, (req, res)=>{
   schemaHistori.find({}, function(err,data) {
     res.render("IndexMhs",{
       datalist : data
@@ -71,7 +72,7 @@ router.get("/IndexMhs", (req, res)=>{
   })
 });
 
-router.get("/Rekomendasi", (req, res)=>{
+router.get("/Rekomendasi", middleware.isLoggedIn, (req, res)=>{
   schemaTest.find({}, function(err,data) {
     res.render("Rekomendasi",{
       datalist : data
@@ -80,7 +81,7 @@ router.get("/Rekomendasi", (req, res)=>{
 });
 
 
-router.get("/DNilaiAdm", (req, res)=>{
+router.get("/DNilaiAdm", middleware.isAdmin, (req, res)=>{
   schemaTest.find({}, function(err,data) {
     res.render("DNilaiAdm",{
       datalist : data
@@ -88,7 +89,7 @@ router.get("/DNilaiAdm", (req, res)=>{
   })
 });
 
-router.get("/DNilaiMhs", (req, res)=>{
+router.get("/DNilaiMhs", middleware.isLoggedIn, (req, res)=>{
   schemaTest.find({}, function(err,data) {
     res.render("DNilaiMhs",{
       datalist : data
@@ -96,11 +97,11 @@ router.get("/DNilaiMhs", (req, res)=>{
   })
 });
 
-router.get("/input", function(req, res) {
+router.get("/input", middleware.isLoggedIn, function(req, res) {
   res.render("input");
 });
 
-router.get("/HasilRek", (req, res)=>{
+router.get("/HasilRek", middleware.isLoggedIn, (req, res)=>{
   schemaHistori.find({}, function(err,data) {
     res.render("HasilRek",{
       datalist : data

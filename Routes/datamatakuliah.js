@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const usercontroller = require("../controllers/usercontroller");
+const middleware = require("../middleware");
 
 
-router.get("/", usercontroller.viewmatakuliah); 
-router.post("/", usercontroller.addmatakuliah); 
-router.put("/", usercontroller.editmatakuliah); 
-router.delete("/:id", usercontroller.deletematakuliah); 
+router.get("/", middleware.isAdmin, usercontroller.viewmatakuliah);
+router.post("/", middleware.isAdmin, usercontroller.addmatakuliah);
+router.put("/", middleware.isAdmin, usercontroller.editmatakuliah);
+router.delete("/:id", middleware.isAdmin, usercontroller.deletematakuliah);
 
 
 
