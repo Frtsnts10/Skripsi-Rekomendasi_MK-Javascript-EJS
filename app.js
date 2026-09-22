@@ -8,8 +8,8 @@ var flash = require("connect-flash");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var methodOverride = require("method-override");
-var indexRoutes = require("./Routes/Index");
-const matakuliahRouter= require("./Routes/datamatakuliah");
+var indexRoutes = require("./routes/index");
+const matakuliahRouter = require("./routes/datamatakuliah");
 var schemaDataLogin = require("./models/ModelLogin");
 
 if (!process.env.SESSION_SECRET) {
@@ -50,7 +50,6 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
-//seedDb();
 
 app.use("/", indexRoutes);
 app.use("/datamatakuliah",matakuliahRouter);

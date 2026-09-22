@@ -1,4 +1,3 @@
-const { request } = require("express");
 const Matakuliah = require("../models/DataTest");
 
 const MATKUL_COUNT = 9;
