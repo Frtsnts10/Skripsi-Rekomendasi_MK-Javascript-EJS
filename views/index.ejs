@@ -49,17 +49,21 @@
       
     $("#dataTable").on("click", ".button-update", function () {
       let id = $(this).data("id");
-      let Nama=$(this).data("Nama");
-      let NIM=$(this).data("NIM");
-      let matkul=$(this).data({});
+      let Nama = $(this).data("nama");
+      let NIM = $(this).data("nim");
+      let matkul = $(this).data("matkul");
+
+      $("#edit_id").val(id);
+      $("#edit_Nama").val(Nama);
+      $("#edit_NIM").val(NIM);
+
+      for (let i = 0; i < matkul.length; i++) {
+        $("#edit_nama_MK" + i).val(matkul[i].nama_MK);
+        $("#edit_nilai" + i).val(matkul[i].nilai);
+        $("#edit_hasil" + i).val(matkul[i].hasil);
+      }
 
       $("#edit_modal").modal("show");
-      
-      $(".id").val(id);
-      $(".Nama").val(Nama);
-      $(".NIM").val(NIM);
-      $(".matkul").val(matkul);
-
     });
   </script>
 

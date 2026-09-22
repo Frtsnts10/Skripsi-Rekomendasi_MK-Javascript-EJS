@@ -5,62 +5,63 @@
     </div>
     <form action="/datamatakuliah?_method=PUT" method="POST">
 
-              <label for="Nama">Nama</label>
+              <input type="hidden" id="edit_id" name="id" />
+
+              <label for="edit_Nama">Nama</label>
               <input
                 type="text"
                 class="form-control"
-                id="Nama"
+                id="edit_Nama"
                 name="Nama"
                 placeholder="Enter Nama"
                 required
               />
-              <label for="NIM">NIM</label>
+              <label for="edit_NIM">NIM</label>
               <input
                 type="text"
                 class="form-control"
-                id="NIM"
+                id="edit_NIM"
                 name="NIM"
                 placeholder="Enter NIM"
                 required
               />
-              
+
               <% for (var a=0;a<9;a++){ %>
                 <% var nama_MK = "nama_MK" + a; %>
                 <% var nilai = "nilai" + a; %>
                 <% var hasil = "hasil" + a; %>
-                <label for="<%=nama_MK%>" >Nama Matakuliah <%= matakuliahd[0].matkul[a].nama_MK %></label>
+                <label for="edit_<%=nama_MK%>" >Nama Matakuliah <%= matakuliahd[0].matkul[a].nama_MK %></label>
                 <input
                   type="text"
                   class="form-control"
-                  id="<%=nama_MK%> "
+                  id="edit_<%=nama_MK%>"
                   name="<%=nama_MK%>"
                   placeholder="Enter MK"
                   required
-                />  
+                />
 
-                <label for="<%=nilai%>" >nilai matakuliah </label>
+                <label for="edit_<%=nilai%>" >nilai matakuliah </label>
                 <input
                   type="text"
                   class="form-control"
-                  id="<%=nilai%> "
+                  id="edit_<%=nilai%>"
                   name="<%=nilai%>"
                   placeholder="Enter nilai"
                   required
-                />  
+                />
 
-                <label for="<%=hasil%>" >hasil</label>
+                <label for="edit_<%=hasil%>" >hasil</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="<%=hasil%> "
+                  id="edit_<%=hasil%>"
                   name="<%=hasil%>"
                   placeholder="Enter nilai"
                   required
-                />  
+                />
                 <%}%>
-    
-        
-              <input type="hidden" class="id" name="id" />
+
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
