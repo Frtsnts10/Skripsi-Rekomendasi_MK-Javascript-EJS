@@ -1,34 +1,35 @@
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#add_modal"> Add </button>
-  
-<!-- <a style="padding-left: 5%; color: black;" href="IndexAdmin">Kembali</a> -->
-<div>
-  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<div style="display: flex; justify-content: flex-end; margin-bottom: var(--space-3);">
+  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_modal">+ Add</button>
+</div>
+
+<div class="table-wrap">
+  <table id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
-        <td>No</td>
-        <td>Nama</td>
+        <th>No</th>
+        <th>Nama</th>
         <% for (var a=0;a<matakuliahd[0].matkul.length;a++){ %>
-          <td><%= matakuliahd[0].matkul[a].nama_MK %></td>
+          <th><%= matakuliahd[0].matkul[a].nama_MK %></th>
           <% } %>
-        <td></td>
+        <th></th>
       </tr>
-      
     </thead>
-  
+
     <tbody>
       <% for(let i = 0; i < matakuliahd.length; i++){ %>
       <tr>
         <td><%= i +1 %></td>
         <td><%= matakuliahd[i].Nama %></td>
-        <% for(let j=0;j<matakuliahd[0].matkul.length;j++){ %> 
+        <% for(let j=0;j<matakuliahd[0].matkul.length;j++){ %>
           <td><%= matakuliahd[i].matkul[j].nilai %></td>
           <%} %>
         <td class="text-center">
           <form
-            action="/datamatakuliah/<%= matakuliahd[i].id %>?_method=DELETE" 
+            action="/datamatakuliah/<%= matakuliahd[i].id %>?_method=DELETE"
             method="POST"
+            style="display: inline-flex; gap: var(--space-2);"
           >
-          
+
             <a href="javascript:void()" class="btn btn-outline-warning btn-sm button-update"
 
               data-id="<%= matakuliahd[i].id %>"
@@ -41,16 +42,15 @@
             <button
               type="submit"
               class="btn btn-outline-danger btn-sm"
-              onclick="return confirm('Yakin data ini mau dihapus?')";
+              onclick="return confirm('Yakin data ini mau dihapus?')"
             >
               Delete
             </button>
           </form>
         </td>
       </tr>
-    
+
       <%} %>
     </tbody>
   </table>
-  
 </div>

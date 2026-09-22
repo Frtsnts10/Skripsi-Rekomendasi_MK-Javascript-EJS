@@ -1,145 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <title>Aplikasi Prediksi dan Rekomendasi Nilai Mahasiswa</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-anchor,.fa-coffee {font-size:200px}
-
-    table {
-    margin: auto;
-    text-align: center;
-    justify-content: center;
-    border: 1px solid black;
-    width: 60%;
-    border-spacing: 30px;
-    border-collapse:collapse;
-    }
-    th{
-    border: 1px solid black;
-    margin: auto;
-    text-align: center;
-    justify-content: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background: black;
-    color: white;
-
-    }
-    td{
-    border: 1px solid black;
-    width: 20%;
-    justify-content: center;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    }
-
-    .colm-form .form-container {
-        background-color: #ffffff;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-        padding: 20px;
-        max-width: 400px;
-    }
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-</style>
-
-<body style="background-image: url(bg.png); background-size: cover;">
-    <!-- Header -->
-    <header class="w3-container w3-center">
-        <img src="Logo.jpg"  width="250">
-        <h1 class="w3-margin" style="color: black; font-weight: bolder;";">Daftar Matakuliah</h1>
+<body class="page">
+    <header class="topbar">
+        <img class="brand-logo" src="Logo.jpg" alt="Logo">
+        <h2 class="brand-title mb-0">Daftar Matakuliah</h2>
+        <div class="topbar-spacer"></div>
+        <a class="btn btn-secondary btn-sm" href="IndexMhs">&larr; Kembali</a>
     </header>
 
-    <br><br>
-    <a style="padding-left: 26%;" href="IndexMhs">Kembali</a>
-    <div class="body-form" style="margin: auto; justify-content: center; text-align: left; padding-left: 10%; padding-right: 10%;">
-        <div class="List">
+    <main class="page-body">
+        <div class="table-wrap">
             <table>
-                <tr>
-                    <th>Kelompok Matakuliah</th>
-                    <th>Nama Matakuliah</th>
-                    <th>Kode</th>
-                    <th>Jumlah SKS</th>
-                </tr>
-                <tr>
-                    <td rowspan="4">Data Science</td>
-                    <td>Data Mining and Data Analytics</td>
-                    <td>TK44018</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>Machine Learning</td>
-                    <td>TK34005</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>Natural Language Processing</td>
-                    <td>TK34018</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>Business Process Re-Engineering</td>
-                    <td>TK34009</td>
-                    <td>4</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Kelompok Matakuliah</th>
+                        <th>Nama Matakuliah</th>
+                        <th>Kode</th>
+                        <th>Jumlah SKS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4">Data Science</td>
+                        <td>Data Mining and Data Analytics</td>
+                        <td>TK44018</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Machine Learning</td>
+                        <td>TK34005</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Natural Language Processing</td>
+                        <td>TK34018</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Business Process Re-Engineering</td>
+                        <td>TK34009</td>
+                        <td>4</td>
+                    </tr>
 
-                <tr>
-                    <td rowspan="2">Intelligence Systems</td>
-                    <td>Artificial Neural Network</td>
-                    <td>TK34019</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>Computer Vision</td>
-                    <td>TK44019</td>
-                    <td>4</td>
-                </tr>
+                    <tr>
+                        <td rowspan="2">Intelligence Systems</td>
+                        <td>Artificial Neural Network</td>
+                        <td>TK34019</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Computer Vision</td>
+                        <td>TK44019</td>
+                        <td>4</td>
+                    </tr>
 
-                <tr>
-                    <td rowspan="2">Game Development</td>
-                    <td>Game Development</td>
-                    <td>TK13026</td>
-                    <td>4</td>
-                </tr>
-                
-                <tr>
-                    <td>Game Design</td>
-                    <td>TK34020</td>
-                    <td>4</td>
-                </tr>
+                    <tr>
+                        <td rowspan="2">Game Development</td>
+                        <td>Game Development</td>
+                        <td>TK13026</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Game Design</td>
+                        <td>TK34020</td>
+                        <td>4</td>
+                    </tr>
 
-                <tr>
-                    <td rowspan="2">Advanced Programming</td>
-                    <td>Java Programming</td>
-                    <td>TK44023</td>
-                    <td>4</td>
-                </tr>
-
-                
-
+                    <tr>
+                        <td>Advanced Programming</td>
+                        <td>Java Programming</td>
+                        <td>TK44023</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
-    </div>
+    </main>
 </body>
 </html>

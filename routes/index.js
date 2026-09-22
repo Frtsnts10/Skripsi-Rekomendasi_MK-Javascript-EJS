@@ -15,24 +15,31 @@ router.get("/Home", function(req, res) {
 });
 
 router.get("/Register", function(req, res) {
-  res.render("Register");});
-  router.post("/Register",function (req, res) { 
-    var username = req.body.username;
-    var password = req.body.password; 
-    schemaDataLogin.register(new schemaDataLogin({ username: username }),
-    password,function (err, user) { 
-      if (err) { 
-        console.log(err);
-        return res.render("Login");
-      } passport.authenticate("local")( req, res,function () {
-        res.render("Login");  
-      });  
-  });});
+  res.render("Register");
+});
 
-router.post("/Login", passport.authenticate("local", 
+router.post("/Register", function (req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+  schemaDataLogin.register(new schemaDataLogin({ username: username }), password, function (err) {
+    if (err) {
+      req.flash("error", err.message);
+      return res.redirect("/Register");
+    }
+    passport.authenticate("local")(req, res, function () {
+      if (username === "Admin") {
+        res.redirect("/IndexAdmin");
+      } else {
+        res.redirect("/IndexMhs");
+      }
+    });
+  });
+});
+
+router.post("/Login", passport.authenticate("local",
   {
-    // successRedirect: "/mahasiswa/"
-    failureRedirect:"/Login"
+    failureRedirect: "/Login",
+    failureFlash: "Username atau password salah"
     }), function(req, res) {
 
       if(req.body.username=='Admin'){
@@ -84,7 +91,7 @@ router.get("/Rekomendasi", middleware.isLoggedIn, (req, res)=>{
 router.get("/DNilaiAdm", middleware.isAdmin, (req, res)=>{
   schemaTest.find({}, function(err,data) {
     res.render("DNilaiAdm",{
-      datalist : data
+      matakuliahd : data
     })
   })
 });
