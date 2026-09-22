@@ -44,7 +44,10 @@ app.use(function(req, res, next) {
 if (!process.env.DATABASEURL) {
   throw new Error("DATABASEURL environment variable is required. See .env.example.");
 }
-mongoose.connect(process.env.DATABASEURL, {useUnifiedTopology: true,useNewUrlParser: true});
+mongoose.connect(process.env.DATABASEURL, {useUnifiedTopology: true, useNewUrlParser: true})
+  .catch((err) => {
+    console.error("MongoDB connection error:", err.message);
+  });
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
