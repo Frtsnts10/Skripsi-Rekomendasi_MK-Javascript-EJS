@@ -1,27 +1,28 @@
 {
-  "name": "filbert",
+  "name": "skripsi-rekomendasi-mk",
   "version": "1.0.0",
-  "description": "tugas akhir",
+  "description": "Aplikasi skripsi untuk memprediksi nilai dan merekomendasikan mata kuliah/peminatan mahasiswa berdasarkan riwayat nilai.",
   "main": "app.js",
   "scripts": {
-    "devStart": "nodemon app.js",
-    "dev": "nodemon",
     "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": " "
+    "url": "https://github.com/Frtsnts10/Skripsi-Rekomendasi_MK-Javascript-EJS"
   },
   "author": "filbert",
   "license": "ISC",
-  "homepage": " ",
+  "homepage": "https://github.com/Frtsnts10/Skripsi-Rekomendasi_MK-Javascript-EJS",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^18.0.2",
     "ejs": "^3.1.9",
-    "eslint": "^5.3.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "method-override": "^3.0.0",
@@ -32,6 +33,7 @@
     "passport-local-mongoose": "^5.0.1"
   },
   "devDependencies": {
+    "eslint": "^5.3.0",
     "nodemon": "^2.0.6"
   }
 }
