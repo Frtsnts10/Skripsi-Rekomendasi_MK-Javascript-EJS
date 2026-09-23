@@ -1,413 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Lato"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <title>
       Cek Rekomendasi | Aplikasi Prediksi Nilai dan Rekomendasi MataKuliah
     </title>
   </head>
 
-  <style>
-    .chsbutton {
-        width: 20%;
-        background-color: #150754;
-        border: none;
-        border-radius: 10px;
-        color: white;
-        font-weight: bold;
-        padding: 10px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px 0px;
-        cursor: pointer;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-    }
-   
-    .button2:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
-    };
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f0f2f5;
-      color: #1c1e21;
-    }
-
-    .navbar {
-      display: flex;
-      height: 80px;
-      text-align: center;
-      justify-content: center;
-    }
-    .logo-image {
-      position: absolute;
-      left: 0px;
-      width: 46px;
-      height: 46px;
-    }
-    .title {
-      position: absolute;
-      top: 10px;
-      width: 500px;
-      font-size: 20px;
-    }
-
-    .dropbtn {
-      background-color: #04aa6d;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .dropbtn:hover,
-    .dropbtn:focus {
-      background-color: #3e8e41;
-    }
-
-    .dropdown {
-      float: right;
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      overflow: auto;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      right: 0;
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown a:hover {
-      background-color: #ddd;
-    }
-
-    .show {
-      display: block;
-    }
-
-    table {
-      margin: auto;
-      text-align: center;
-      justify-content: center;
-      border: 1px solid black;
-      width: 65%;
-      border-spacing: 30px;
-      border-collapse: collapse;
-    }
-    th {
-      border: 1px solid black;
-      margin: auto;
-      text-align: center;
-      justify-content: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 20px;
-      padding-right: 20px;
-      background: black;
-      color: white;
-    }
-    td {
-      border: 1px solid black;
-      width: 30%;
-      justify-content: center;
-      text-align: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
-    /* The Modal (background) */
-
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0, 0, 0); /* Fallback color */
-      background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-      padding-top: 60px;
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-      background-color: #fefefe;
-      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-      border: 1px solid #888;
-      width: 50%; /* Could be more or less, depending on screen size */
-      height: 50%;
-    }
-
-    /* The Close Button (x) */
-    .close {
-      position: absolute;
-      right: 25px;
-      top: 0;
-      color: #000;
-      font-size: 35px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: red;
-      cursor: pointer;
-    }
-
-    /* Add Zoom Animation */
-    .animate {
-      -webkit-animation: animatezoom 0.6s;
-      animation: animatezoom 0.6s;
-    }
-
-    @-webkit-keyframes animatezoom {
-      from {
-        -webkit-transform: scale(0);
-      }
-      to {
-        -webkit-transform: scale(1);
-      }
-    }
-
-    @keyframes animatezoom {
-      from {
-        transform: scale(0);
-      }
-      to {
-        transform: scale(1);
-      }
-    }
-
-    /* Change styles for span and cancel button on extra small screens */
-    @media screen and (max-width: 300px) {
-      span.psw {
-        display: block;
-        float: none;
-      }
-      .cancelbtn {
-        width: 100%;
-      }
-    }
-  </style>
-
-  <body style="background-image: url(bg.png); background-size: cover">
-    <!-- Header -->
-    <header
-      class="w3-container w3-center"
-      style="
-        padding: 10px 16px;
-        justify-content: center;
-        text-align: center;
-        margin: auto;
-      "
-    >
-      <img src="Logo.jpg" width="250" /><br />
-      <h1
-        class="w3-margin"
-        style="
-          color: black;
-          font-weight: bolder;
-          margin: auto;
-          justify-content: center;
-          text-align: center;
-        "
-      >
-        Cek Rekomendasi Matakuliah
-      </h1>
+  <body class="page">
+    <header class="topbar">
+      <img class="brand-logo" src="Logo.jpg" alt="Logo">
+      <h2 class="brand-title mb-0">Cek Rekomendasi Matakuliah</h2>
+      <div class="topbar-spacer"></div>
+      <a class="btn btn-secondary btn-sm" href="IndexMhs">&larr; Kembali</a>
     </header>
 
-    <div
-      class="body-form"
-      style="
-        margin: auto;
-        justify-content: center;
-        padding-left: 10%;
-        padding-right: 10%;
-        padding-top: 2%;
-        height: auto;
-      "
-    >
-      <a href="IndexMhs">Kembali</a>
-      <!-- <div style="padding-top: 5%; height: auto; margin: auto;">
-            <table>
-                <tr>
-                    <th colspan="1"> Matakuliah Rekomendasi</th>
-                    <th colspan="1"> Nilai Minimum</th>
-                    <th colspan="1"> Hasil Rekomendasi</th>
-                    <th colspan="1"> Kelompok Rekomendasi</th>
-                </tr>
-            </table>
-            <td><button onclick="document.getElementById('id01').style.display='block'">Lihat</button></td>
-        </div> -->
-
-      <div style="margin: auto; text-align: center; justify-content: center">
-        <h4>
-          Pilihan Matakuliah 1 yang ingin diambil :
-          <select name="" id="pilihan1" style="display: flexbox" onchange="handleSelectChange(event)">
-            <option value="">     Pilih Kelompok     </option>
-            <!-- <optgroup label="       Data Science      ">
-              <option value="Data Mining and Data Analytics">Data Mining and Data Analytics</option>
-              <option value="Machine Learning">Machine Learning</option>
-              <option value="Natural Language Processing">Natural Language Processing</option>
-              <option value="Business Process Re-Engineering">Business Process Re-Engineering</option>
-            </optgroup> -->
-
+    <main class="page-body page-body--narrow">
+      <div class="card">
+        <div class="form-group mb-0">
+          <label for="pilihan1">Pilihan Matakuliah yang ingin diambil</label>
+          <select name="" id="pilihan1" class="form-control" onchange="handleSelectChange(event)">
+            <option value="">Pilih Kelompok</option>
             <option value="Data Science">Data Science</option>
             <option value="Intelligence Systems">Intelligence Systems</option>
             <option value="Game Development">Game Development</option>
             <option value="Advance Programming">Advanced Programming</option>
           </select>
-        </h4>
-      </div>
+        </div>
 
-      <div
-        style="
-          justify-content: center;
-          text-align: center;
-          margin: auto;
-          padding-top: 2%;
-        "
-      >
-        <button class="chsbutton button2"  onclick="window.location='/HasilRek'">
+        <button class="btn btn-primary btn-block mt-4" onclick="window.location='/HasilRek'">
           Cek Hasil Rekomendasi
         </button>
       </div>
-    </div>
+    </main>
 
- 
+    <span id="usr" hidden><%= JSON.stringify(datalist) %></span>
 
-  </body>
+    <script>
+      var usr = JSON.parse($('#usr').text());
+      $('#usr').remove();
+      console.log(usr)
 
-  <span id="usr" hidden><%= JSON.stringify(datalist) %></span>
+      function handleSelectChange(event) {
+        var selectElement = event.target;
+        var value = selectElement.value;
+        if(value=="Data Science"){
+          var index="Data Science";
+        } else if(value=="Intelligence Systems"){
+          var index="Intelligence Systems";
+        } else if(value=="Game Development"){
+          var index="Game Development";
+        } else{
+          var index="Advanced Programming";
+        }
 
-  <script>
-    var usr = JSON.parse($('#usr').text());
-    $('#usr').remove();
-    console.log(usr)
-
-    // // Get the modal
-    // var modal = document.getElementById("id01");
-
-    // // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function (event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = "none";
-    //   }
-    // };
-
-    function handleSelectChange(event) {
-      var selectElement = event.target;
-      var value = selectElement.value;
-      if(value=="Data Science"){
-        var index="Data Science";
-      } else if(value=="Intelligence Systems"){
-        var index="Intelligent Systems";
-      } else if(value=="Game Development"){
-        var index="Game Development";
-      } else{
-        var index="Advanced Programming";
+        window.localStorage.setItem("KelompokMK", index);
+        console.log(index);
       }
+    </script>
 
-      window.localStorage.setItem("KelompokMK", index);
-      // window.localStorage.setItem("Matkul", value);
-      console.log(index);
-      // console.log(value);
-    }
-  </script>
+    <script>
+      var MK1 = window.localStorage.getItem("ANN");
+      var HMk1 = window.localStorage.getItem("HMk1");
 
-  <script>
-    
-    var MK1 = window.localStorage.getItem("ANN");
-    var HMk1 = window.localStorage.getItem("HMk1");
+      var MK2 = window.localStorage.getItem("ML");
+      var HMk2 = window.localStorage.getItem("HMk2");
 
-    var MK2 = window.localStorage.getItem("ML");
-    var HMk2 = window.localStorage.getItem("HMk2");
+      var MK3 = window.localStorage.getItem("COMVIS");
+      var HMk3 = window.localStorage.getItem("HMk3");
 
-    var MK3 = window.localStorage.getItem("COMVIS");
-    var HMk3 = window.localStorage.getItem("HMk3");
+      var MK4 = window.localStorage.getItem("DM");
+      var HMk4 = window.localStorage.getItem("HMk4");
 
-    var MK4 = window.localStorage.getItem("DM");
-    var HMk4 = window.localStorage.getItem("HMk4");
-
-    var MK5 = window.localStorage.getItem("NLP");
-    var HMk5 = window.localStorage.getItem("HMk5");
-
-  </script>
-
-<script>
-  //  var muncul = window.localStorage.getItem("pilihan");
-  //   // console.log(muncul)
-    
-  //   // Nampilin Nilai Rata
-  //   var nilairatamhs = window.localStorage.getItem("meannilai");
-  //   nilairatamhs = (nilairatamhs) ? JSON.parse(nilairatamhs) : [];
-  //   var hasilnilai = window.localStorage.getItem("hasilmhs");
-  //   hasilnilai = (hasilnilai) ? JSON.parse(hasilnilai) : [];
-  //   var rekmatkul = window.localStorage.getItem("rek");
-  //   rekmatkul = (rekmatkul) ? JSON.parse(rekmatkul) : [];
-    
-    // console.log(nilairatamhs)
-    
-    // for(var a = 0; a < mhs.length; a++){
-    //     if(mhs[a].name == muncul){
-    //         document.getElementById("tampilan").innerHTML = mhs[a].name;
-    //         document.getElementById("rekomendasi").innerHTML = mhs[a].rekomendasi;
-    //         // console.log(mhs[a].name)
-    //         document.getElementById("meannilai").innerHTML = nilairatamhs[a];
-    //         document.getElementById("hasil").innerHTML = hasilnilai[a];
-    //         document.getElementById("rek").innerHTML = rekmatkul[a];
-    //     }
-    // }
-
-  
-</script>
-
-<!-- "document.getElementById('id01').style.display='block';  -->
+      var MK5 = window.localStorage.getItem("NLP");
+      var HMk5 = window.localStorage.getItem("HMk5");
+    </script>
+  </body>
 </html>

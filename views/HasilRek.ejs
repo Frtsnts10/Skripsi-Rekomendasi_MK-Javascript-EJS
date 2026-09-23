@@ -1,380 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Lato"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <title>
       Hasil Rekomendasi | Aplikasi Prediksi Nilai dan Rekomendasi MataKuliah
     </title>
   </head>
 
-  <style>
-    .chsbutton {
-      width: 20%;
-      background-color: #150754;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
-      padding: 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 10px 0px;
-      cursor: pointer;
-      -webkit-transition-duration: 0.4s; /* Safari */
-      transition-duration: 0.4s;
-    }
+  <body class="page">
+    <header class="topbar">
+      <img class="brand-logo" src="Logo.jpg" alt="Logo">
+      <h2 class="brand-title mb-0">Hasil Prediksi Nilai Matakuliah</h2>
+      <div class="topbar-spacer"></div>
+      <a class="btn btn-secondary btn-sm" href="Rekomendasi">&larr; Kembali</a>
+    </header>
 
-    .button2:hover {
-      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-        0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    }
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f0f2f5;
-      color: #1c1e21;
-    }
-
-    .navbar {
-      display: flex;
-      height: 80px;
-      text-align: center;
-      justify-content: center;
-    }
-    .logo-image {
-      position: absolute;
-      left: 0px;
-      width: 46px;
-      height: 46px;
-    }
-    .title {
-      position: absolute;
-      top: 10px;
-      width: 500px;
-      font-size: 20px;
-    }
-
-    .dropbtn {
-      background-color: #04aa6d;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .dropbtn:hover,
-    .dropbtn:focus {
-      background-color: #3e8e41;
-    }
-
-    .dropdown {
-      float: right;
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      overflow: auto;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      right: 0;
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown a:hover {
-      background-color: #ddd;
-    }
-
-    .show {
-      display: block;
-    }
-
-    table {
-      margin: auto;
-      text-align: center;
-      justify-content: center;
-      border: 1px solid black;
-      width: 65%;
-      border-spacing: 30px;
-      border-collapse: collapse;
-    }
-    th {
-      border: 1px solid black;
-      margin: auto;
-      text-align: center;
-      justify-content: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 20px;
-      padding-right: 20px;
-      background: black;
-      color: white;
-    }
-    td {
-      border: 1px solid black;
-      width: 30%;
-      justify-content: center;
-      text-align: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
-    /* The Modal (background) */
-
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0, 0, 0); /* Fallback color */
-      background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-      padding-top: 60px;
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-      background-color: #fefefe;
-      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-      border: 1px solid #888;
-      width: 50%; /* Could be more or less, depending on screen size */
-      height: 50%;
-    }
-
-    /* The Close Button (x) */
-    .close {
-      position: absolute;
-      right: 25px;
-      top: 0;
-      color: #000;
-      font-size: 35px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: red;
-      cursor: pointer;
-    }
-
-    /* Add Zoom Animation */
-    .animate {
-      -webkit-animation: animatezoom 0.6s;
-      animation: animatezoom 0.6s;
-    }
-
-    @-webkit-keyframes animatezoom {
-      from {
-        -webkit-transform: scale(0);
-      }
-      to {
-        -webkit-transform: scale(1);
-      }
-    }
-
-    @keyframes animatezoom {
-      from {
-        transform: scale(0);
-      }
-      to {
-        transform: scale(1);
-      }
-    }
-
-    /* Change styles for span and cancel button on extra small screens */
-    @media screen and (max-width: 300px) {
-      span.psw {
-        display: block;
-        float: none;
-      }
-      .cancelbtn {
-        width: 100%;
-      }
-    }
-  </style>
-
-  <body style="background-image: url(bg.png); background-size: cover">
-    <header
-    class="w3-container w3-center"
-    style="
-      padding: 10px 16px;
-      justify-content: center;
-      text-align: center;
-      margin: auto;
-    "
-  >
-    <img src="Logo.jpg" width="250" /><br />
-    <h1
-      class="w3-margin"
-      style="
-        color: black;
-        font-weight: bolder;
-        margin: auto;
-        justify-content: center;
-        text-align: center;
-      "
-    >
-      Hasil Prediksi Nilai Matakuliah
-    </h1>
-  </header>
-
-  <div
-    class="body-form"
-    style="
-      margin: auto;
-      justify-content: center;
-      padding-left: 10%;
-      padding-right: 10%;
-      padding-top: 2%;
-      height: auto;
-    "
-  >
-    <a href="Rekomendasi">Kembali</a>
-    <div style="margin: auto; text-align: center; justify-content: center;">
-    <form class="" action="" style="text-align: center; margin: auto">
-        <div style="padding-top: 5%">
-            <table>
-            <tr>  
-                <th >Kelompok Matakuliah</th>
-                <th>Matakuliah</th>
-                <th>Nilai Minimum</th>
-                <th>Prediksi Nilai</th>
-            </tr>
-
-            <!-- MK1 -->
+    <main class="page-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
             <tr>
-                <td id="KelompokMK"></td>
-                <td id="NamaMK"></td>
-                <td id="MinMK" ></td>
-                <td id="prediksi" ></td>
+              <th>Kelompok Matakuliah</th>
+              <th>Matakuliah</th>
+              <th>Nilai Minimum</th>
+              <th>Prediksi Nilai</th>
             </tr>
-
-          </table>  
+          </thead>
+          <tbody>
+            <tr>
+              <td id="KelompokMK"></td>
+              <td id="NamaMK"></td>
+              <td id="MinMK"></td>
+              <td id="prediksi"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </form>
-  </div>
+    </main>
 
-  <span id="datatest"><%= JSON.stringify(datalist) %></span>
+    <span id="datatest" hidden><%= JSON.stringify(datalist) %></span>
 
-  <script>
-    var datatest = JSON.parse($('#datatest').text());
-    $('#datatest').remove();
-    // console.log(datatest);
+    <script>
+      var datatest = JSON.parse($('#datatest').text());
+      $('#datatest').remove();
 
-    var MKKel =  window.localStorage.getItem("KelompokMK");
-    var ANN =  window.localStorage.getItem("HMk1");
-    var ML =  window.localStorage.getItem("HMk2");
-    var COMVIS =  window.localStorage.getItem("HMk3");
-    var DM =  window.localStorage.getItem("HMk4");
-    var NLP =  window.localStorage.getItem("HMk5");
-    
-    var data = "";
-    var max = 0;
-    for(var a=0; a < datatest.length; a++){
-      for (var b=0; b < datatest[a].Kelompok.length; b++){
-        for (var c=0; c < datatest[a].Kelompok[b].MK.length; c++){
-          if(datatest[a].Kelompok[b].nama_Kel == MKKel){
-            if(datatest[a].Kelompok[b].MK[c].Nilai >= max){
-              max = datatest[a].Kelompok[b].MK[c].Nilai
-              data = datatest[a].Kelompok[b].MK[c].nama_MK
+      var MKKel =  window.localStorage.getItem("KelompokMK");
+      var ANN =  window.localStorage.getItem("HMk1");
+      var ML =  window.localStorage.getItem("HMk2");
+      var COMVIS =  window.localStorage.getItem("HMk3");
+      var DM =  window.localStorage.getItem("HMk4");
+      var NLP =  window.localStorage.getItem("HMk5");
+
+      var data = "";
+      var max = 0;
+      for(var a=0; a < datatest.length; a++){
+        for (var b=0; b < datatest[a].Kelompok.length; b++){
+          for (var c=0; c < datatest[a].Kelompok[b].MK.length; c++){
+            if(datatest[a].Kelompok[b].nama_Kel == MKKel){
+              if(datatest[a].Kelompok[b].MK[c].Nilai >= max){
+                max = datatest[a].Kelompok[b].MK[c].Nilai
+                data = datatest[a].Kelompok[b].MK[c].nama_MK
+              }
             }
           }
         }
       }
-    }
 
-    console.log(data);
-    // console.log(max);
+      console.log(data);
 
-    document.getElementById("KelompokMK").innerHTML = MKKel;
-    document.getElementById("NamaMK").innerHTML = data;
+      document.getElementById("KelompokMK").innerHTML = MKKel;
+      document.getElementById("NamaMK").innerHTML = data;
 
-    var nilaipred1 = window.localStorage.getItem("pred1");
-    var nilaipred2 = window.localStorage.getItem("pred2");
-    var nilaipred3 = window.localStorage.getItem("pred3");
-    var nilaipred4 = window.localStorage.getItem("pred4");
-    var nilaipred5 = window.localStorage.getItem("pred5");
-    var nilaipred6 = window.localStorage.getItem("pred6");
-    var nilaipred7 = window.localStorage.getItem("pred7");
-    var nilaipred8 = window.localStorage.getItem("pred8");
-    var nilaipred9 = window.localStorage.getItem("pred9");
+      var nilaipred1 = window.localStorage.getItem("pred1");
+      var nilaipred2 = window.localStorage.getItem("pred2");
+      var nilaipred3 = window.localStorage.getItem("pred3");
+      var nilaipred4 = window.localStorage.getItem("pred4");
+      var nilaipred5 = window.localStorage.getItem("pred5");
+      var nilaipred6 = window.localStorage.getItem("pred6");
+      var nilaipred7 = window.localStorage.getItem("pred7");
+      var nilaipred8 = window.localStorage.getItem("pred8");
+      var nilaipred9 = window.localStorage.getItem("pred9");
 
-    // console.log(parseInt(nilaipred1));
-
-    if(data=="Business Process Re-Engineering"){
-      document.getElementById("MinMK").innerHTML = "C";
-      document.getElementById("prediksi").innerHTML = nilaipred4;
-    } else if(data=="Computer Vision"){
-      document.getElementById("MinMK").innerHTML = COMVIS;
-      document.getElementById("prediksi").innerHTML = nilaipred6;
-    } else if(data=="Artificial Neural Network"){
-      document.getElementById("MinMK").innerHTML = ANN;
-      document.getElementById("prediksi").innerHTML = nilaipred5;
-    } else if(data=="Machine Learning"){
-      document.getElementById("MinMK").innerHTML = ML;
-      document.getElementById("prediksi").innerHTML = nilaipred2;
-    } else if(data=="Game Development"){
-      document.getElementById("MinMK").innerHTML = "B";
-      document.getElementById("prediksi").innerHTML = nilaipred7;
-    } else if(data=="Java Programming"){
-      document.getElementById("MinMK").innerHTML = "C";
-      document.getElementById("prediksi").innerHTML = nilaipred9;
-    } else if(data=="Natural Language Processing"){
-      document.getElementById("MinMK").innerHTML = NLP;
-      document.getElementById("prediksi").innerHTML = nilaipred3;
-    } else if(data=="Game Design"){
-      document.getElementById("MinMK").innerHTML = "B";
-      document.getElementById("prediksi").innerHTML = nilaipred8;
-    } else if(data=="Data Mining and Data Analytics"){
-      document.getElementById("MinMK").innerHTML = DM;
-      document.getElementById("prediksi").innerHTML = nilaipred1;
-    } 
-
-  </script>
-</body>
+      if(data=="Business Process Re-Engineering"){
+        document.getElementById("MinMK").innerHTML = "C";
+        document.getElementById("prediksi").innerHTML = nilaipred4;
+      } else if(data=="Computer Vision"){
+        document.getElementById("MinMK").innerHTML = COMVIS;
+        document.getElementById("prediksi").innerHTML = nilaipred6;
+      } else if(data=="Artificial Neural Network"){
+        document.getElementById("MinMK").innerHTML = ANN;
+        document.getElementById("prediksi").innerHTML = nilaipred5;
+      } else if(data=="Machine Learning"){
+        document.getElementById("MinMK").innerHTML = ML;
+        document.getElementById("prediksi").innerHTML = nilaipred2;
+      } else if(data=="Game Development"){
+        document.getElementById("MinMK").innerHTML = "B";
+        document.getElementById("prediksi").innerHTML = nilaipred7;
+      } else if(data=="Java Programming"){
+        document.getElementById("MinMK").innerHTML = "C";
+        document.getElementById("prediksi").innerHTML = nilaipred9;
+      } else if(data=="Natural Language Processing"){
+        document.getElementById("MinMK").innerHTML = NLP;
+        document.getElementById("prediksi").innerHTML = nilaipred3;
+      } else if(data=="Game Design"){
+        document.getElementById("MinMK").innerHTML = "B";
+        document.getElementById("prediksi").innerHTML = nilaipred8;
+      } else if(data=="Data Mining and Data Analytics"){
+        document.getElementById("MinMK").innerHTML = DM;
+        document.getElementById("prediksi").innerHTML = nilaipred1;
+      }
+    </script>
+  </body>
 </html>

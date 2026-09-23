@@ -1,146 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <title>Aplikasi Prediksi dan Rekomendasi Nilai Mahasiswa</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-    .fa-anchor,.fa-coffee {font-size:200px}
+<body class="page">
+    <header class="topbar">
+        <img class="brand-logo" src="Logo.jpg" alt="Logo">
+        <h2 class="brand-title mb-0">Daftar Nilai Mahasiswa</h2>
+        <div class="topbar-spacer"></div>
+        <a class="btn btn-secondary btn-sm" href="IndexAdmin">&larr; Kembali</a>
+    </header>
 
-    table {
-      margin: auto;
-      text-align: center;
-      justify-content: center;
-      border: 1px solid black;
-      width: 90%;
-      border-spacing: 30px;
-      border-collapse:collapse;
-    }
-    th{
-      width: 10%;
-      border: 1px solid black;
-      margin: auto;
-      text-align: center;
-      justify-content: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 20px;
-      padding-right: 20px;
-      background: black;
-      color: white;
-    }
-    td{
-      border: 1px solid black;
-      width: 10%;
-      justify-content: center;
-      text-align: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-    tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-</style>
+    <main class="page-body">
+        <div class="form-group" style="max-width: 320px;">
+            <label for="myInput">Cari Nama</label>
+            <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Nama Mahasiswa..">
+        </div>
 
-<body style="background-image: url(bg.png); background-size: cover;">
-  <!-- Header -->
-  <header class="w3-container w3-center" style="padding:30px 16px;">
-    <img src="Logo.jpg"  width="300">
-    <h1 class="w3-margin" style="color: black; font-weight: bolder;";">Daftar Nilai Mahasiswa</h1>
-  </header>
+        <%- include('table.ejs') %>
+        <%- include('modal.ejs') %>
+    </main>
 
-  
-  <div class="body-form" style="margin: auto; justify-content: center; padding-left: 10%; padding-right: 10%;">
-    <a style="padding-left: 5%;" href="IndexAdmin">Kembali</a>
-    <br>
-    <div style="justify-content: center;text-align: center; margin: auto;">
-      <h3>Pencarian Nama</h3>
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nama Mahasiswa.." title="Type in a name">
-    </div>
-   
-    <br><br>
-    <div style="justify-content: center; text-align: center; margin: auto;"><%- include('table.ejs') %></div>
-    
-    <%- include('modal.ejs') %> 
-    <!-- <table id="myTable">
-      <tr>
-        <th>Nama</th>
-        <th>NIM</th>
-        <th>Matakuliah</th>
-        <th>Nilai</th>
-      </tr>
-      
-     
-      <tr>
-        <% for(var a=0; a < datalist.length;a++) { %>
-          <% for(var b=0; b < datalist[a].Kelompok.length; b++) { %>
-            <% for(var c=0; c < datalist[a].Kelompok[b].MK.length; c++) { %>
-              <td><%= datalist[a].Nama %></td>
-              <td><%= datalist[a].NIM %></td>
-              <td ><%= datalist[a].Kelompok[b].MK[c].nama_MK %></td>
-              <td ><%= datalist[a].Kelompok[b].MK[c].Nilai %></td>
-            </tr>
-          <% } %>
-        <% } %>
-        
-      <% } %>
-    </table> -->
-  </div>
-    
+    <script>
+      function myFunction() {
+        var filter = document.getElementById("myInput").value.toUpperCase();
+        var rows = document.querySelectorAll("#dataTable tbody tr");
+        rows.forEach(function (row) {
+          var nameCell = row.getElementsByTagName("td")[1];
+          if (!nameCell) return;
+          var match = nameCell.textContent.toUpperCase().indexOf(filter) > -1;
+          row.style.display = match ? "" : "none";
+        });
+      }
 
-  <!-- Footer -->
-  <footer class="w3-container w3-padding-64 w3-center w3-opacity">  
-    <p>Created by Filbert</p>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-  </footer>
+      $("#dataTable").on("click", ".button-update", function () {
+        let id = $(this).data("id");
+        let Nama = $(this).data("nama");
+        let NIM = $(this).data("nim");
+        let matkul = $(this).data("matkul");
+
+        $("#edit_id").val(id);
+        $("#edit_Nama").val(Nama);
+        $("#edit_NIM").val(NIM);
+
+        for (let i = 0; i < matkul.length; i++) {
+          $("#edit_nama_MK" + i).val(matkul[i].nama_MK);
+          $("#edit_nilai" + i).val(matkul[i].nilai);
+          $("#edit_hasil" + i).val(matkul[i].hasil);
+        }
+
+        $("#edit_modal").modal("show");
+      });
+    </script>
 </body>
 </html>
-
-<script>
-  function myFunction() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }
-
-  $("#dataTable").on("click", ".button-update", function () {
-    let id = $(this).data("id");
-    let Nama=$(this).data("Nama");
-    let NIM=$(this).data("NIM");
-    let matkul=$(this).data({});
-
-    $("#edit_modal").modal("show");
-    
-    $(".id").val(id);
-    $(".Nama").val(Nama);
-    $(".NIM").val(NIM);
-    $(".matkul").val(matkul);
-
-  });
-</script>
